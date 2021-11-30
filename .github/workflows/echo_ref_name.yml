@@ -1,14 +1,16 @@
 name: Get Release Name
-env:
-  VERSION: ${{ github.ref_name }}
 on:
   workflow_dispatch:
     inputs:
+      version:
+        description: "Version to upload"
+        required: true
       pypi_repo:
         description: "Repo to upload to (Test PyPI or PyPI)"
         default: "testpypi"
         required: true
-
+env:
+  VERSION: ${{ github.event.inputs.version }}
 jobs:
   print-values:
     name: Print Input and Release Version
