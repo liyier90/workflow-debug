@@ -1,0 +1,22 @@
+name: Get Release Name
+env:
+  VERSION: ${{ github.ref_name }}
+on:
+  workflow_dispatch:
+    inputs:
+      pypi_repo:
+        description: "Repo to upload to (Test PyPI or PyPI)"
+        default: "testpypi"
+        required: true
+
+jobs:
+  print-values:
+    name: Print Input and Release Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print all values
+        run: |
+          echo $VERSION
+          echo $GITHUB_REF
+          echo ${GITHUB_REF:10}
+      
